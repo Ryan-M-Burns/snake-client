@@ -1,36 +1,44 @@
 let connection;
+const { ENCODING,
+  MOVE_UP_KEY,
+  MOVE_LEFT_KEY,
+  MOVE_DOWN_KEY,
+  MOVE_RIGHT_KEY,
+  SAYING_ONE_KEY,
+  SAYING_TWO_KEY,
+  KILL_COMMAND } = require('./constants');
 
 const setupInput = function(conn) {
   connection = conn;
 
   const stdin = process.stdin;
   stdin.setRawMode(true);
-  stdin.setEncoding('utf-8');
+  stdin.setEncoding(ENCODING);
   stdin.resume();
   stdin.on('data', handleUserInput);
 
   return stdin;
 };
 const handleUserInput = function(key) {
-  if (key === 'w') {
+  if (key === MOVE_UP_KEY) {
     connection.write("Move: up");
   }
-  if (key === 'a') {
+  if (key === MOVE_LEFT_KEY) {
     connection.write("Move: left");
   }
-  if (key === 's') {
+  if (key === MOVE_DOWN_KEY) {
     connection.write("Move: down");
   }
-  if (key === 'd') {
+  if (key === MOVE_RIGHT_KEY) {
     connection.write("Move: right");
   }
-  if (key === '\u0003') {
+  if (key === KILL_COMMAND) {
     process.exit();
   }
-  if (key === 'q') {
+  if (key === SAYING_ONE_KEY) {
     connection.write("Say: Do a barrel roll!");
   }
-  if (key === 'e') {
+  if (key === SAYING_TWO_KEY) {
     connection.write("Say: I identify as a mouse");
   }
 
