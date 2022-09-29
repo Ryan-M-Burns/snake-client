@@ -15,11 +15,6 @@ const connect = function() {
     conn.write('Name: RMB');
   });
 
-  // conn.on("connect", () => {
-  //   setInterval(() => {
-  //     conn.write("Move: up");
-  //   }, 50);
-  // });
 
   conn.on('data', (data) => {
     console.log(`incoming data: ${data}`);
